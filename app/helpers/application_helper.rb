@@ -10,5 +10,11 @@ module ApplicationHelper
       "#{base_title} | #{@title}"
     end
   end
+
+  # exercise 1 from chapter 5
+  # create a helper for the local variable logo
+  def logo
+    image_tag("logo.png", :alt => "Sample App", :class => "round")
+  end
   
 end

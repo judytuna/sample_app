@@ -7,6 +7,14 @@ require 'spec/rails'
 
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
+# i didn't do that but the following is from the webrat instructions...
+# it wanted me to put it in test_helper.rb, but i'm using spec instead 
+
+require "webrat"
+
+Webrat.configure do |config|
+  config.mode = :rails
+end
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
