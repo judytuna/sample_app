@@ -38,6 +38,14 @@ class User < ActiveRecord::Base
     encrypted_password == encrypt(submitted_password)
   end
 
+  def self.authenticate(email, submitted_password) #could say User.authenticate
+    user = find_by_email(email)
+    return nil if user.nil? #that email isn't in our database
+    return user if user.has_password?(submitted_password) #got the user
+    # third case is implicit: password mismatch, reaches end of method, 
+    # automatically returns nil
+  end
+
   private # only internal - outside things can't call these
 
     def encrypt_password
