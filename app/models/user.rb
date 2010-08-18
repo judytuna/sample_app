@@ -40,10 +40,24 @@ class User < ActiveRecord::Base
 
   def self.authenticate(email, submitted_password) #could say User.authenticate
     user = find_by_email(email)
-    return nil if user.nil? #that email isn't in our database
-    return user if user.has_password?(submitted_password) #got the user
-    # third case is implicit: password mismatch, reaches end of method, 
-    # automatically returns nil
+    #  return nil if user.nil? #that email isn't in our database
+    #  return user if user.has_password?(submitted_password) #got the user
+    #  # third case is implicit: password mismatch, reaches end of method, 
+    #  # automatically returns nil
+    
+    # listing 7.28 and 7.29 ... using if statements
+    #  if user.nil?
+    #    nil
+    #  elsif user.has_password?(submitted_password)
+    #    user
+    #  else
+    #    nil
+    #  end
+
+    # listing 7.30
+    user && user.has_password?(submitted_password) ? user : nil
+       # if user and user.haspw are both true, then return user
+       # if not, then return nil
   end
 
   private # only internal - outside things can't call these
